@@ -1,6 +1,6 @@
 <?php
-require_once ("cabecalho.php");
-require_once ("conexao-banco.php");
+require_once("../view/cabecalho.php");
+require_once("conexao-banco.php");
 
 
 $nome  = $_POST["nome"];
@@ -17,7 +17,7 @@ $sqlprep = $conexao->prepare($sql);
 $total =$qtde*$preco;
 $sqlprep->bind_param("sdids" ,$nome,$preco,$qtde,$total,$produtor);
 if ($sqlprep->execute()) {
-    header("location: produtos.php");
+    header("location: ../view/produtos.php");
 } else {
     ?>
     

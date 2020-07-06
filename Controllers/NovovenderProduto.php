@@ -1,6 +1,6 @@
 <?php
-require_once ("cabecalho.php");
-require_once ("conexao-banco.php");
+require_once("../view/cabecalho.php");
+require_once("conexao-banco.php");
 
 $nome  = $_POST["nome"];
 $preco = $_POST["preco"];
@@ -17,7 +17,7 @@ $total = $qtdev*$pv;
 $totalf= $total-$tg;
 $sqlprep->bind_param("sdiddidds" ,$nome,$preco,$qtde,$tg,$pv,$qtdev,$total,$totalf,$produtor);
 if ($sqlprep->execute()) {
-    header("location: gestao.php");
+    header("location: ../view/gestao.php");
 } else {
 
     ?>

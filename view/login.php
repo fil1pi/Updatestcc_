@@ -1,14 +1,14 @@
 <?php
 require_once('cabecalho.php');
 ?>
-<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="../css/css.css">
 <div class = "card" id="telalogin">
 <div class = "card-body">
 
   <h1 class="font-italic">Siscul</h1>
 <h3 class="font-italic">A nossa plataforma de gerenciamento!</h3>
 
-                <form action = "Logar.php" method = "post">
+                <form action = "../Controllers/Logar.php" method = "post">
                     
                 
                 <div class = "form-group">

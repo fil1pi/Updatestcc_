@@ -1,6 +1,6 @@
 <?php
 
-require_once ("conexao-banco.php");
+require_once("conexao-banco.php");
 
 
 
@@ -28,9 +28,9 @@ $_SESSION["id"] = $vetorUMRegistro["id"];
 $_SESSION["email"] = $vetorUMRegistro["email"];
 $_SESSION["nome"] = $vetorUMRegistro["nome"];
    if ($vetorUMRegistro["adm"]===1) {
-    header("location: siteadm.php");
+    header("location: ../view/siteadm.php");
    }else {
-    header("location: siteusu.php");
+    header("location: ../view/siteusu.php");
    }
 } else {
 $_SESSION["erroLogin"] = "Erro de login ou senha.";

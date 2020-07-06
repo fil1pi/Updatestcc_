@@ -1,6 +1,6 @@
 <?php
-require_once ("cabecalho.php");
-require_once ("conexao-banco.php");
+require_once("../view/cabecalho.php");
+require_once("conexao-banco.php");
 $id =$_POST['id'];
 $lermais =$_POST['lermais'];
     $link = $_POST['titu'];
@@ -19,11 +19,11 @@ $lermais =$_POST['lermais'];
             if ($tamanho > 8388608) {
                 echo "O tamanho do arquivo excede o limite permitido";
             } else {
-                $mover = move_uploaded_file($_FILES['img']['tmp_name'], "uploads/" . $novoNome);
+                $mover = move_uploaded_file($_FILES['img']['tmp_name'], "../Imagens/uploads/" . $novoNome);
                 $sql = "INSERT INTO publicacao (titulo, conteudo, img,lermais) VALUES ('$link', '$texto', '$novoNome','$lermais')";
                 $sqlprep=mysqli_query($conexao,$sql);
                 if ($sqlprep = true) {
-                    header("location:formpubli.php");
+                    header("location: ../view/formpubli.php");
                 }
             }
         } else {

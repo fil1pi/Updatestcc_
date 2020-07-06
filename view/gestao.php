@@ -1,7 +1,7 @@
 <?php
-require_once ("conexao-banco.php");
+require_once("../Controllers/conexao-banco.php");
 require_once('cabecalho.php');
-require_once('protege.php');
+require_once('../Controllers/protege.php');
 $usu= $_SESSION['nome'];
 
 $pag = (isset($_GET['pagina']))?$_GET['pagina'] : 1;
@@ -31,7 +31,7 @@ $proximo = $pag +1;
   <title></title>
  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/stile.css">
+  <link rel="stylesheet" href="../css/stile.css">
   <!-- Grafico de barra -->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -77,7 +77,7 @@ while($dados = mysqli_fetch_array($buscar)){
   <body>
 
   <input type="checkbox" id="check">
-  <label for="check" id="icone"><img src="icone.png"></label>
+  <label for="check" id="icone"><img src="../imagens/icone.png"></label>
   <div class="barra">
     <nav>
       <a href="siteusu.php"><div class="link">Dashboard</div></a>
@@ -95,7 +95,7 @@ while($dados = mysqli_fetch_array($buscar)){
 
             <nav class="navbar fixed-top navbar-expand-lg navbar-light"style="background-color: #282828;">
             <input type="checkbox" id="check">
-  <label for="check" id="icone"><img src="icone.png"></label>
+  <label for="check" id="icone"><img src="../imagens/icone.png"></label>
   <div class="barra">
     <nav>
       <a href=""><div class="link">Dashboard</div></a>
@@ -110,7 +110,7 @@ while($dados = mysqli_fetch_array($buscar)){
     </nav>
   </div>
               <div class="nav">
-                <img src="ricardo.png" width="40" height="40" >
+                <img src="../imagens/ricardo.png" width="40" height="40" >
             <a class="navbar-brand" href="#">Silcul</a>
             
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -131,7 +131,7 @@ while($dados = mysqli_fetch_array($buscar)){
   <?= $_SESSION["nome"]; ?>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-  <a class="dropdown-item" href="logout.php">Logout</a>
+  <a class="dropdown-item" href="../Controllers/logout.php">Logout</a>
    
   </div>
 </div>

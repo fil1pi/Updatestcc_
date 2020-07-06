@@ -1,7 +1,7 @@
 <?php
 require_once('cabecalho.php');
 ?>
-<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="../css/css.css">
 <div class = "card" id="telalogin">
 <div class = "card-body">
 
@@ -10,7 +10,7 @@ require_once('cabecalho.php');
 <br>
                         <p class="font-italic"> Cadastrar novo usuario</p>
 
-<form  action = "Cadastrar.php" method = "post" enctype                  = "multipart/form-data">
+<form action = "../Controllers/Cadastrar.php" method = "post" enctype                  = "multipart/form-data">
         <div   class  = "form-group">
         <label for    = "nome"> </label>
         <input type   = "text" class           = " rounded-pill form-control" id = "nome"name = "nome" placeholder = "nome de usuario">

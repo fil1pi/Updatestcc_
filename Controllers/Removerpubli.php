@@ -1,17 +1,17 @@
 <?php
     require_once("conexao-banco.php");
 
-    $id = $_POST["idv"];
-    $sql = "delete from usuarios where id=?";
+    $id = $_POST["id"];
+    $sql = "delete from publicacao where idpubli=?";
     $sqlprep = $conexao->prepare($sql);
     $sqlprep->bind_param("i",$id);
     if($sqlprep->execute()){
 
-        header("location: Listusuarios.php");
+        header("location: ../view/siteadm.php");
     }else{
         echo "Dados não podem ser removidos";
 
-
         
+
     }
 ?>

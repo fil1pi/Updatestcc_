@@ -1,5 +1,5 @@
 <?php
-require_once ("conexao-banco.php");
+require_once("../Controllers/conexao-banco.php");
 require_once('cabecalho.php');
 $usu=$_SESSION["nome"];
 ?>

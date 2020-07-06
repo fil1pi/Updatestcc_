@@ -25,12 +25,12 @@ require_once('cabecalho.php');
         chart.draw(data, options);
       }
     </script>
-<link rel   = "stylesheet" href = "css/index.css">
+<link rel   = "stylesheet" href = "../css/index.css">
 <div  id    = "fundo">
 <!-- Image and text -->
 <nav class="navbar navbar-dark bg-dark"style="background-color: #282828;">
   <a class="navbar-brand" href="#">
-    <img src="ricardo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    <img src="../imagens/ricardo.png" width="30" height="30" class="d-inline-block align-top" alt="">
     Siscul
   </a>
 </nav>

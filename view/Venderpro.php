@@ -1,11 +1,15 @@
 <?php
-require_once "cabecalho.php";
+require_once "../Controllers/cabecalho.php";
 require_once "conexao-banco.php";
-require_once 'protege.php';
+require_once '../Controllers/protege.php';
 
-$usu= $_SESSION["nome"] ;
+if (isset($_POST['id'])) {
+	$id = $_POST['id'];
+} else {
+	$id = 0;
+}
 
-$sql = " SELECT * FROM  Produtos_alpha WHERE produtor = '$usu' ";
+$sql = " SELECT * FROM  Produtos_alpha where id ='$id' ";
 $resultado = mysqli_query($conexao, $sql);
 $umvalor = mysqli_fetch_assoc($resultado);
 $todososvalores = array();
@@ -13,6 +17,10 @@ while ($umvalor != null) {
 	array_push($todososvalores, $umvalor);
 	$umvalor = mysqli_fetch_assoc($resultado);
 }
+
+
+foreach ($todososvalores as $registro):
+
 
 ?>
 <!DOCTYPE html>
@@ -23,12 +31,12 @@ while ($umvalor != null) {
   <title></title>
  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/stile.css">
+  <link rel="stylesheet" href="../css/stile.css">
  
   <body>
 
   <input type="checkbox" id="check">
-  <label for="check" id="icone"><img src="icone.png"></label>
+  <label for="check" id="icone"><img src="../imagens/icone.png"></label>
   <div class="barra">
     <nav>
       <a href="siteusu.php"><div class="link">Dashboard</div></a>
@@ -37,17 +45,13 @@ while ($umvalor != null) {
       <hr class = "featurette-divider">
       <a href="gestao.php"><div class="link">Gestão</div></a>
       <hr class = "featurette-divider">
-      <div class="container">
-        
-      <p>Site desenvolvido por Felipe Schmitz & Vitoria santana !</p>
-     </div>
+      
     </nav>
   </div>
 
-
             <nav class="navbar fixed-top navbar-expand-lg navbar-light "style="background-color: #282828;" >
             <input type="checkbox" id="check">
-  <label for="check" id="icone"><img src="icone.png"></label>
+  <label for="check" id="icone"><img src="../imagens/icone.png"></label>
   <div class="barra">
     <nav>
       <a href=""><div class="link">Dashboard</div></a>
@@ -56,10 +60,15 @@ while ($umvalor != null) {
       <hr class = "featurette-divider">
       <a href=""><div class="link">Gestão</div></a>
       <hr class = "featurette-divider">
+      <div class="container">
+      <p>Site desenvolvido por Felipe Schmitz & Vitoria santana !</p>
+      
+     </div>
+
     </nav>
   </div>
               <div class="nav">
-                <img src="ricardo.png" width="40" height="40" >
+                <img src="../imagens/ricardo.png" width="40" height="40" >
             <a class="navbar-brand" href="#">Silcul</a>
             
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +89,7 @@ while ($umvalor != null) {
   <?= $_SESSION["nome"]; ?>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-  <a class="dropdown-item" href="logout.php">Logout</a>
+  <a class="dropdown-item" href="../Controllers/logout.php">Logout</a>
    
   </div>
 </div>
@@ -117,68 +126,50 @@ while ($umvalor != null) {
               Novo Produto
             </div>
             <div class="card-body">
-              <form action="NovoProduto.php" method="post">
+              <form action="../Controllers/NovovenderProduto.php" method="post">
              
                 <div class="form-group">
                   <label for="nome">Nome</label>
-                  <input type="text" class="form-control" id="nome"name="nome">
+                  <input type="text" class="form-control" id="nome"name="nome"
+                  value="<?=$registro['nome']?>">
                 </div>
                 
                 <div class="form-group">
-                  <label for="nota2">Preço</label>
-                  <input type="text" class="form-control" id="senha" name="preco">
+                  <label for="nota2">Preço de produção</label>
+                  <input type="text" class="form-control" id="senha" name="preco"
+                  value="<?=$registro['Preco_producao']?>">
                 </div>
                 <div class="form-group">
-                  <label for="nota2">Quantidade</label>
-                  <input type="number" class="form-control" id="senha" name="qtde">
+                  <label for="nota2">Quantidade </label>
+                  <input type="number" class="form-control" id="senha" name="qtde"
+                  value="<?=$registro['quantidade']?>">
                 </div>
+                <div class="form-group">
+                  <label for="nota2">Total gasto</label>
+                  <input type="text" class="form-control" id="senha" name="tg"
+                  value="<?=$registro['Total_gasto']?>">
+                </div>
+                <div class="form-group">
+                  <label for="nota2">Preço venda</label>
+                  <input type="text" class="form-control" id="senha" name="pv">
+                </div>
+                <div class="form-group">
+                  <label for="nota2">quantidade venda</label>
+                  <input type="number" class="form-control" id="senha" name="qtdev">
+                </div>
+              
                 <button type="submit" class="ntn btn-success">Guardar</button>
               </form>
             </div>
           </div>
         </div>
-       
+        <?php endforeach?>
         <div class="col-md-6">
             <br>
             <br>
 
-          <table class="table table-bordered table-dark">
-            <table class="table table-bordered table-dark">
-              <thead class="">
-                <tr>
-                  <th>Nome</th>
+          
         
-                  <th>Preço</th>
-                  <th>Quantidade</th>
-                  <th>Total gasto</th>
-                  
-                  <?php
-foreach ($todososvalores as $registro):
-?>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th><?=$registro["nome"];?></th>
-                  <th><?=$registro["Preco_producao"];?></th>
-                  
-                  <th><?=$registro["quantidade"];?></th>
-                  <th><?=$registro["Total_gasto"];?></th>
-                  <th>
-                    <form action="Removerpro.php" method="post">
-                      <input type="hidden" name="id" value="<?=$registro["id"];?>">
-                      <button type="submit" class="btn btn-large btn-block btn-danger">Remover</button>
-                    </form>
-                    <br>
-                    <form action="Venderpro.php" method="post">
-                      <input type="hidden" name="id" value="<?=$registro["id"];?>">
-                      <button type="submit" class="btn btn-large btn-block btn-warning">Vender</button>
-                    </form>
-                    
-                  </th>
-                </tr>
-              </tbody>
-              <?php endforeach?>
             </div>
           </table>
         </div>
@@ -199,6 +190,6 @@ foreach ($todososvalores as $registro):
         </div>
         </div>
       
-      <?php require_once 'rodape.php'?>
-    </div>
-  </div>
+      <?php require_once 'rodape.php' ?>
+    </body>
+  </html>
