@@ -1,14 +1,28 @@
 <?php
 require_once("../view/cabecalho.php");
 require_once("conexao-banco.php");
+if ((isset($_POST["id"])) && (isset($_POST["id"])=='id') ) {
+    
+   
 
+
+    # code...
 $nome  = $_POST["nome"];
 $preco = $_POST["preco"];
 $qtde = $_POST["qtde"];
 $tg = $_POST["tg"];
-$pv = $_POST["pv"];
-$qtdev = $_POST["qtdev"];
+$pv = trim($_POST["pv"]);
+$qtdev = trim($_POST["qtdev"]);
 $produtor = $_SESSION['nome'];
+   
+if ((empty($pv)) && (empty($qtdev)))  {
+    $_SESSION["Errorv"] = "Todos os campos devem ser preenchidos ";
+    header("location: ../view/404.php");
+    # code...
+}
+
+else{
+
 
 
 $sql     = " insert into produtos_omega( nome,Preco_producao,quantidade,total_gasto,Preco_Venda,quantida_Venda,total_venda,Total_Final,produtor) values(?,?,?,?,?,?,?,?,?)";
@@ -20,10 +34,9 @@ if ($sqlprep->execute()) {
     header("location: ../view/gestao.php");
 } else {
 
-    ?>
-
-    <div class = "p-3 mb-2 bg-success text-white">Algo de errado amigão</div>
-
-    <?php
+    header("location: ../view/404.php");
 
 }
+}
+}
+?>

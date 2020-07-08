@@ -20,7 +20,7 @@ while ($umvalor != null) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title>Produtos</title>
  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/stile.css">
@@ -31,15 +31,14 @@ while ($umvalor != null) {
   <label for="check" id="icone"><img src="../imagens/icone.png"></label>
   <div class="barra">
     <nav>
-      <a href="siteusu.php"><div class="link">Dashboard</div></a>
+      <a href="gestao.php"><div class="link">Home</div></a>
       <hr class = "featurette-divider">
       <a href="produtos.php"><div class="link">Produtos</div></a>
       <hr class = "featurette-divider">
-      <a href="gestao.php"><div class="link">Gestão</div></a>
-      <hr class = "featurette-divider">
+      
       <div class="container">
         
-      <p>Site desenvolvido por Felipe Schmitz & Vitoria santana !</p>
+      <p> <i>Site desenvolvido por Felipe Schmitz & Vitoria santana !</i> </p>
      </div>
     </nav>
   </div>
@@ -50,12 +49,11 @@ while ($umvalor != null) {
   <label for="check" id="icone"><img src="../imagens/icone.png"></label>
   <div class="barra">
     <nav>
-      <a href=""><div class="link">Dashboard</div></a>
+      <a href=""><div class="link">Home</div></a>
       <hr class = "featurette-divider">
       <a href=""><div class="link">Produtos</div></a>
       <hr class = "featurette-divider">
-      <a href=""><div class="link">Gestão</div></a>
-      <hr class = "featurette-divider">
+      
     </nav>
   </div>
               <div class="nav">
@@ -109,7 +107,7 @@ while ($umvalor != null) {
     <div class="container">
         <div class="alinhar">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
           <br>
           <br>
           <div class="card">
@@ -118,7 +116,15 @@ while ($umvalor != null) {
             </div>
             <div class="card-body">
               <form action="../Controllers/NovoProduto.php" method="post">
-             
+              <?php
+                            if (isset($_SESSION["ErrorCampo"]) ) {
+                              # code...
+                              $msgerro = $_SESSION["ErrorCampo"];
+                             echo "<div class='alert alert-danger' role='alert'> $msgerro </div>";
+                             unset($_SESSION["ErrorCampo"]);
+                            }
+                            
+                            ?>
                 <div class="form-group">
                   <label for="nome">Nome</label>
                   <input type="text" class="form-control" id="nome"name="nome">
@@ -132,70 +138,69 @@ while ($umvalor != null) {
                   <label for="nota2">Quantidade</label>
                   <input type="number" class="form-control" id="senha" name="qtde">
                 </div>
-                <button type="submit" class="ntn btn-success">Guardar</button>
+                <input type="hidden" name="id" value="id">
+                <button type="submit" class="btn btn-outline-success">Guardar</button>
               </form>
             </div>
           </div>
         </div>
-       
-        <div class="col-md-6">
+        </div>
+        
+            
             <br>
             <br>
-
-          <table class="table table-bordered table-dark">
-            <table class="table table-bordered table-dark">
+            <div class="col-md-9">
+          <table class="table   table-bordered table-dark">
+            <table class="table  table-bordered table-dark">
               <thead class="">
                 <tr>
                   <th>Nome</th>
         
-                  <th>Preço</th>
+                  <th>Preço de Produção</th>
                   <th>Quantidade</th>
                   <th>Total gasto</th>
+                  <th >Condição</th>
                   
                   <?php
 foreach ($todososvalores as $registro):
+  $preco =number_format($registro["Preco_producao"],2,",",".");
+  $toga =number_format($registro["Total_gasto"],2,",",".");
 ?>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th><?=$registro["nome"];?></th>
-                  <th><?=$registro["Preco_producao"];?></th>
+                  <th>R$ <?=$preco;?></th>
                   
                   <th><?=$registro["quantidade"];?></th>
-                  <th><?=$registro["Total_gasto"];?></th>
-                  <th>
+                  <th>R$ <?=$toga;?></th>
+                  <th >
                     <form action="../Controllers/Removerpro.php" method="post">
                       <input type="hidden" name="id" value="<?=$registro["id"];?>">
-                      <button type="submit" class="btn btn-large btn-block btn-danger">Remover</button>
+                      <button type="submit" class="btn  btn-large btn-block btn-outline-danger">Remover</button>
                     </form>
                     <br>
                     <form action="Venderpro.php" method="post">
                       <input type="hidden" name="id" value="<?=$registro["id"];?>">
-                      <button type="submit" class="btn btn-large btn-block btn-warning">Vender</button>
+                      <button type="submit" class="btn btn-outline btn-large btn-block btn-outline-warning">Vender</button>
                     </form>
                     
                   </th>
                 </tr>
               </tbody>
               <?php endforeach?>
-            </div>
+            
           </table>
-        </div>
-        <div class="col-md-6">
+        
+        
           <br>
           <br>
           
 
          
         </div>
-        <div class="col-md-6">
- 
-<br>
-<br>
-          
-
-          </div>
+    
         </div>
         </div>
       

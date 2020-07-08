@@ -1,15 +1,15 @@
 <?php
 require_once("../Controllers/conexao-banco.php");
 require_once('cabecalho.php');
-require_once("../Controllers/protege.php");
+require_once('../Controllers/protege.php');
+$usu= $_SESSION['nome'];
 
-
-    $pag = (isset($_GET['pagina']))?$_GET['pagina'] : 1;
+$pag = (isset($_GET['pagina']))?$_GET['pagina'] : 1;
     
-$busca = "SELECT *FROM  publicacao";
+$busca = "SELECT *FROM Produtos_omega ";
 $todos = mysqli_query($conexao, "$busca");
 
-$registros = "3";
+$registros = "10";
 
 $tr = mysqli_num_rows($todos);
 $tp = ceil($tr/$registros);
@@ -20,68 +20,96 @@ $limite = mysqli_query($conexao, "$busca LIMIT $inicio, $registros");
 $anterior = $pag -1;
 $proximo = $pag +1;
 
-   
 
-$sql = " SELECT * FROM  publicacao ";
-$resultado = mysqli_query($conexao, $sql);
-$umvalor = mysqli_fetch_assoc($resultado);
-$todososvalores = array();
-while ($umvalor != null) {
-	array_push($todososvalores, $umvalor);
-    $umvalor = mysqli_fetch_assoc($resultado);
 
-   
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pagina adm</title>
+  <title>Home</title>
  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/stile.css">
-  </head>
+  <!-- Grafico de barra -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['nome', 'produto', 'Vendidos', 'Produzidos'],
+          <?php
+$sql =" SELECT * from Produtos_omega  ORDER BY quantida_Venda asc";
+$buscar =mysqli_query($conexao,$sql);
+while($dados = mysqli_fetch_array($buscar)){
+
+  $n= $dados['produtor'];
+  $tg = $dados['quantida_Venda'];
+  $tv = $dados['quantidade'];
+  $tf = $dados['nome'];
+
+          ?>
+          ['<?php echo $n ?>', '<?php echo  $tf ?>', '<?php echo $tg ?>', '<?php echo $tv ?>'],
+          
+<?php } ?>
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Siscul Company ',
+            subtitle: '',
+          },
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    
+    </script>
+ 
+</head>
   <body>
 
   <input type="checkbox" id="check">
   <label for="check" id="icone"><img src="../imagens/icone.png"></label>
   <div class="barra">
     <nav>
-      <a href="siteadm.php"><div class="link">Dashboard</div></a>
+      <a href="Homeadm.php"><div class="link">Home</div></a>
       <hr class = "featurette-divider">
       <a href="Listusuarios.php"><div class="link">Usuarios</div></a>
       <hr class = "featurette-divider">
-      <a href="formpubli.php"><div class="link">Publicar</div></a>
-      <hr class = "featurette-divider">
-     
-      
+    
+      <div class="container">
+      <p><i>Site desenvolvido por Felipe Schmitz & Vitoria santana !</i></p>
+     </div>
+    
     </nav>
   </div>
-  
 
-            <nav class="navbar fixed-top navbar-expand-lg navbar-light " style="background-color: #282828;">
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light"style="background-color: #282828;">
             <input type="checkbox" id="check">
   <label for="check" id="icone"><img src="../imagens/icone.png"></label>
   <div class="barra">
     <nav>
-      <a href=""><div class="link">Dashboard</div></a>
+      <a href=""><div class="link">Home</div></a>
       <hr class = "featurette-divider">
       <a href=""><div class="link">Usuarios</div></a>
       <hr class = "featurette-divider">
-      <a href=""><div class="link">Publicar</div></a>
-      <hr class = "featurette-divider">
-
+     
       <div class="container">
-      <p>Site desenvolvido por Felipe Schmitz & Vitoria santana !</p>
+      <p><i> Site desenvolvido por Felipe Schmitz & Vitoria santana ! </i></p>
      </div>
-      
     </nav>
   </div>
               <div class="nav">
                 <img src="../imagens/ricardo.png" width="40" height="40" >
-<a class="navbar-brand" href="#"  >Silcul</a>
+            <a class="navbar-brand" href="#">Silcul</a>
             
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -95,8 +123,8 @@ while ($umvalor != null) {
                 <?php
     
     if (isset($_SESSION["nome"])) : ?>
-          <div class="dropdown">
-  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <div class="dropdown">
+  <button class="btn btn-light  dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   <img src="https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873_960_720.png" alt="" style="width: 25px; height: 25px;">
   <?= $_SESSION["nome"]; ?>
   </button>
@@ -105,7 +133,6 @@ while ($umvalor != null) {
    
   </div>
 </div>
-
     <?php else : ?>
         <a href="login.php" style="color: inherit; text-decoration: none">
             <button type="button" class="btn btn-light mr-sm-2">
@@ -125,46 +152,77 @@ while ($umvalor != null) {
               
             </div>
           </nav>
+          <div class="container">
+          <div class="row">
+              <div class="col-md-6">
+         <br>
          
-          <?php 
-          foreach ($todososvalores as $umRegistro) :
-            $titulo=$umRegistro['titulo'];
-            $texto=$umRegistro['conteudo'];
-                        $imagem = $umRegistro['img']; 
-                        $link = $umRegistro['lermais'];?>
-        <div class="container">
+           <br>
+          <br>
+          
+          <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+          
+          </div>
+          </div>
           <br>
           <br>
-          <br>
-        <div class="row">
-        <div class="col-md-8">
-          <table>
-        <div class="card">
-        <form action="../Controllers/Removerpubli.php" method="post">
-                      <input type="hidden" name="id" value="<?= $umRegistro['idpubli'];?>">
-                      <button type="submit" class="btn btn-large  btn-danger">Remover</button>
-        </form>
-                     
-                     
-              <?php print "<img class='figure-img img-fluid rounded border border-dark' src='../Imagens/uploads/$imagem' style='height: 400px; width: 800px'>" ?>
-              <h1><?php echo  " $titulo"; ?></h1>                    
-              <h3 class="text-justify"><?php echo  " $texto"; ?></h3>
-             
-                                            <p>
-                                            <a   href="<?= $umRegistro['lermais'];?>"><button class="btn btn-outline-primary btn-lg btn-block">Ler mais </button>
-                                                     
-                                                   
-                                                     </a>    
-                                                    </p>
-                                                    </div>
-                
-        </div>
-        <?php endforeach?>
-        </div>
+         
+          <div class="row">
+            <br>
+            <br>
+          <table class="table table-responsive  table-striped table-dark">
+            <thead>
+                <tr >
+                    <th >ID</th>
+                    <th >PRODUTOR</th>
+                    <th >NOME</th>
+                    <th>PREÇO DE PRODUÇÃO</th>
+                    <th >QUANTIDADE</th>
+                    <th >TOTAL GASTO</th>
+                    <th >PREÇO DE VENDA</th>
+                    <th >QUANTIDADE VENDIDA</th>
+                    <th >TOTAL DA VENDA</th>
+                    <th >LUCRO FINAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                while($dados = mysqli_fetch_array($limite)){
+                    $id = $dados['idproduto'];
+                    $nome = $dados['nome'];
+                    $PPP = $dados['Preco_producao'];
+                    $QTT = $dados['quantidade'];
+                    $TGG = $dados['Total_gasto'];
+                    $PVV = $dados['Preco_venda'];
+                    $QVV = $dados['quantida_Venda'];
+                    $TVF = $dados['total_venda'];
+                    $LF = $dados['Total_Final'];
+                    $p = $dados['produtor'];
+
+                    $precoprodu =number_format($PPP,2,",",".");
+                    $totalgas =number_format($TGG,2,",",".");
+                    $precovenda =number_format( $PVV,2,",",".");
+                    $totalven =number_format( $TVF,2,",",".");
+                    $totalfin =number_format(  $LF,2,",",".");
+                ?>
+                <tr>
+                    <th scope="row"><?=$id?></th>
+                    <td><?=$p?></td>
+                    <td><?=$nome?></td>
+                    <td>R$ <?=$precoprodu?></td>
+                    <td><?=$QTT?></td>
+                    <td>R$ <?=$totalgas?></td>
+                    <td>R$ <?=$precovenda?></td>
+                    <td><?=$QVV?></td>
+                    <td>R$ <?=$totalven?></td>
+                    <td>R$ <?=$totalfin?></td>
+                    
+                </tr> 
+                <?php }?>
+            </tbody>
+        </table>
         
-        </div>
-       
-        <ul class="pagination">
+            <ul class="pagination">
                 <?php
                 if($pag >1){
                 ?>
@@ -198,7 +256,12 @@ while ($umvalor != null) {
                 </li>
                 <?php }?>
             </ul>
+        
+    
 
+          </div>
+          </div>
+          
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

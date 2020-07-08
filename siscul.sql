@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 02-Jul-2020 às 03:24
+-- Generation Time: 09-Jul-2020 às 00:33
 -- Versão do servidor: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -42,12 +42,13 @@ CREATE TABLE `produtos_alpha` (
 --
 
 INSERT INTO `produtos_alpha` (`id`, `nome`, `Preco_producao`, `quantidade`, `Total_gasto`, `produtor`) VALUES
-(1, 'jkhjkh', 567.756, 4, 2271.024, ''),
-(2, 'sdgsdgfsg', 25.5, 10, 255, ''),
-(3, 'hgfhgfghfgh', 30, 3, 90, ''),
-(4, 'gfjfjfj', 50.3, 3, 150.89999999999998, ''),
-(5, '56456456', 54, 6, 324, 'felipe'),
-(6, 'dfsfsfsd', 54, 2, 108, 'felipe');
+(20, 'queijo', 20, 15, 300, 'Felipin'),
+(21, 'leite', 10, 50, 500, 'Felipin'),
+(22, 'Rapadura', 15, 30, 450, 'Felipin'),
+(23, 'Doce de leite', 10, 20, 200, 'Felipin'),
+(24, 'Carne seca', 55, 5, 275, 'Felipin'),
+(25, 'AlfaÃ§e', 5, 25, 125, 'Felipin'),
+(26, 'Mandioca', 2, 40, 80, 'Felipin');
 
 -- --------------------------------------------------------
 
@@ -73,49 +74,12 @@ CREATE TABLE `produtos_omega` (
 --
 
 INSERT INTO `produtos_omega` (`idproduto`, `nome`, `Preco_producao`, `quantidade`, `Total_gasto`, `Preco_venda`, `quantida_Venda`, `total_venda`, `Total_Final`, `produtor`) VALUES
-(3417, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3418, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3419, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3420, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3421, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3422, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3423, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3424, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3425, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3426, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3427, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3428, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3429, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3430, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3431, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3432, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3433, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3434, 'sdgsdgfsg', 25.5, 10, 255, 50, 7, 350, 95, ''),
-(3435, '56456456', 54, 6, 324, 6565, 1, 6565, 6241, 'felipe');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `publicacao`
---
-
-CREATE TABLE `publicacao` (
-  `idpubli` int(11) NOT NULL,
-  `titulo` varchar(100) NOT NULL,
-  `conteudo` varchar(255) NOT NULL,
-  `img` varchar(100) NOT NULL,
-  `lermais` varchar(222) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `publicacao`
---
-
-INSERT INTO `publicacao` (`idpubli`, `titulo`, `conteudo`, `img`, `lermais`) VALUES
-(1, 'Temor de prejuÃ­zos com imagem negativa do governo no exterior racha agronegÃ³cio', ' \r\n                  Desentendimentos entre lideranÃ§as do setor comeÃ§aram em 2019 e ganharam corpo apÃ³s declaraÃ§Ã£o do ministro Ricardo Salles sobre â€˜passar a boiadaâ€™\r\n                  ', '108584246.png', 'https://www.infomoney.com.br/mercados/temor-de-prejuizos-com-imagem-negativa-do-governo-no-exterior-racha-agronegocio/'),
-(2, 'Apesar de pandemia, exportaÃ§Ãµes do agronegÃ³cio brasileiro crescem em 2020', ' \r\n                  Apesar de a economia nacional ter sido abalada pela pandemia do novo CoronavÃ­rus, o saldo da balanÃ§a comercial do agronegÃ³cio brasileiro nos meses de janeiro a maio de 2020 registrou superÃ¡vit de US$ 36,6 bilhÃµes.\r\n              ', '392243893.png', 'https://ocp.news/economia/apesar-de-pandemia-exportacoes-do-agronegocio-brasileiro-crescem-em-2020'),
-(3, 'Governo regulamenta cadastro para incentivar aÃ§Ãµes anti-corrupÃ§Ã£o no agronegÃ³cio', ' \r\n                  O MinistÃ©rio da Agricultura aprovou regulamento para um cadastro que visa incentivar a adoÃ§Ã£o pelo agronegÃ³cio de prÃ¡ticas de integridade e de prevenÃ§Ã£o contra corrupÃ§Ã£o, segundo publicaÃ§Ã£o no DiÃ¡rio Oficial da UniÃ£o dest', '527752298.png', 'https://www.moneytimes.com.br/governo-regulamenta-cadastro-para-incentivar-acoes-anti-corrupcao-no-agronegocio/'),
-(4, 'ExportaÃ§Ãµes do agronegÃ³cio batem recorde em 2020', ' ExportaÃ§Ãµes do agronegÃ³cio batem recorde em 2020\r\n                  \r\n                  ', '996302707.png', 'https://www.cbnmaringa.com.br/noticia/pib-do-agronegocio-brasileiro-teve-expansao-de-24-nos-dois-primeiros-meses-de-2020');
+(3439, 'queijo', 20, 15, 300, 25, 10, 250, -50, 'Felipin'),
+(3440, 'leite', 10, 50, 500, 10, 50, 500, 0, 'Felipin'),
+(3441, 'Rapadura', 15, 30, 450, 20, 30, 600, 150, 'Felipin'),
+(3442, 'Doce de leite', 10, 20, 200, 15, 15, 225, 25, 'Felipin'),
+(3443, 'AlfaÃ§e', 5, 25, 125, 2, 20, 40, -85, 'Felipin'),
+(3444, 'Mandioca', 2, 40, 80, 10, 40, 400, 320, 'Felipin');
 
 -- --------------------------------------------------------
 
@@ -136,9 +100,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `adm`) VALUES
-(2, 'felipe', 'felipe@teste.com', '12345678', 0),
-(4, 'Felipe Schmitz', 'abacaxidoce@fruta.com', '12345678', 1),
-(5, 'filipin', 'usuario@teste.com', '12345678', 0);
+(1, 'Felipe Schmitz', 'FelipeSchmitz@gmail.com', '12345678', 1),
+(16, 'Felipin', 'Felipinabl@gmail.com', '12345678', 0);
 
 --
 -- Indexes for dumped tables
@@ -157,12 +120,6 @@ ALTER TABLE `produtos_omega`
   ADD PRIMARY KEY (`idproduto`);
 
 --
--- Indexes for table `publicacao`
---
-ALTER TABLE `publicacao`
-  ADD PRIMARY KEY (`idpubli`);
-
---
 -- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -176,25 +133,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `produtos_alpha`
 --
 ALTER TABLE `produtos_alpha`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `produtos_omega`
 --
 ALTER TABLE `produtos_omega`
-  MODIFY `idproduto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3436;
-
---
--- AUTO_INCREMENT for table `publicacao`
---
-ALTER TABLE `publicacao`
-  MODIFY `idpubli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idproduto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3445;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

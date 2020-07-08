@@ -1,6 +1,6 @@
 <?php
-require_once "../Controllers/cabecalho.php";
-require_once "conexao-banco.php";
+require_once "cabecalho.php";
+require_once "../Controllers/conexao-banco.php";
 require_once '../Controllers/protege.php';
 
 if (isset($_POST['id'])) {
@@ -28,7 +28,7 @@ foreach ($todososvalores as $registro):
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title>Vender</title>
  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/stile.css">
@@ -39,12 +39,11 @@ foreach ($todososvalores as $registro):
   <label for="check" id="icone"><img src="../imagens/icone.png"></label>
   <div class="barra">
     <nav>
-      <a href="siteusu.php"><div class="link">Dashboard</div></a>
+      <a href="gestao.php"><div class="link">Home</div></a>
       <hr class = "featurette-divider">
       <a href="produtos.php"><div class="link">Produtos</div></a>
       <hr class = "featurette-divider">
-      <a href="gestao.php"><div class="link">Gestão</div></a>
-      <hr class = "featurette-divider">
+      
       
     </nav>
   </div>
@@ -54,14 +53,13 @@ foreach ($todososvalores as $registro):
   <label for="check" id="icone"><img src="../imagens/icone.png"></label>
   <div class="barra">
     <nav>
-      <a href=""><div class="link">Dashboard</div></a>
+      <a href=""><div class="link">Home</div></a>
       <hr class = "featurette-divider">
       <a href=""><div class="link">Produtos</div></a>
       <hr class = "featurette-divider">
-      <a href=""><div class="link">Gestão</div></a>
-      <hr class = "featurette-divider">
+      
       <div class="container">
-      <p>Site desenvolvido por Felipe Schmitz & Vitoria santana !</p>
+      <p><i>Site desenvolvido por Felipe Schmitz & Vitoria santana !</i></p>
       
      </div>
 
@@ -118,7 +116,7 @@ foreach ($todososvalores as $registro):
     <div class="container">
         <div class="alinhar">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
           <br>
           <br>
           <div class="card">
@@ -157,8 +155,8 @@ foreach ($todososvalores as $registro):
                   <label for="nota2">quantidade venda</label>
                   <input type="number" class="form-control" id="senha" name="qtdev">
                 </div>
-              
-                <button type="submit" class="ntn btn-success">Guardar</button>
+                <input type="hidden" name="id" value="id">
+                <button type="submit" class="btn btn-outline-success">Guardar</button>
               </form>
             </div>
           </div>

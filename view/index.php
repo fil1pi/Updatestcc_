@@ -54,7 +54,7 @@ require_once('cabecalho.php');
 
                                    </p> 
 
-                                   <a class = "text-center" href = "login.php"><button type = "button" class = "btn btn-outline-primary btn-lg btn-block">Va para o site</button></a>
+                                   <a class = "text-center" href = "login.php"><button type = "button" class = "btn btn-outline-primary btn-lg btn-block">Ir para o Sistema</button></a>
                                    
                                    <br>
                                    <br>

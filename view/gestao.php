@@ -28,7 +28,7 @@ $proximo = $pag +1;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title>Home</title>
  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/stile.css">
@@ -51,9 +51,12 @@ while($dados = mysqli_fetch_array($buscar)){
   $tg = $dados['Total_gasto'];
   $tv = $dados['total_venda'];
   $tf = $dados['Total_Final'];
+  $tg1=number_format($tg,2,",",".");
+  $tv1=number_format($tv,2,",",".");
+  $tf1=number_format($tf,2,",",".");
 
           ?>
-          ['<?php echo $n ?>', '<?php echo $tf ?>', '<?php echo $tg ?>', '<?php echo $tv ?>'],
+          ['<?php echo $n ?>', 'R$ <?php echo $tf1 ?>', 'R$ <?php echo $tg1 ?>', 'R$ <?php echo $tv1?>'],
           
 <?php } ?>
         ]);
@@ -80,14 +83,13 @@ while($dados = mysqli_fetch_array($buscar)){
   <label for="check" id="icone"><img src="../imagens/icone.png"></label>
   <div class="barra">
     <nav>
-      <a href="siteusu.php"><div class="link">Dashboard</div></a>
+      <a href="gestao.php"><div class="link">Home</div></a>
       <hr class = "featurette-divider">
       <a href="produtos.php"><div class="link">Produtos</div></a>
       <hr class = "featurette-divider">
-      <a href="gestao.php"><div class="link">Gestão</div></a>
-      <hr class = "featurette-divider">
+    
       <div class="container">
-      <p>Site desenvolvido por Felipe Schmitz & Vitoria santana !</p>
+      <p><i>Site desenvolvido por Felipe Schmitz & Vitoria santana !</i></p>
      </div>
     
     </nav>
@@ -98,14 +100,13 @@ while($dados = mysqli_fetch_array($buscar)){
   <label for="check" id="icone"><img src="../imagens/icone.png"></label>
   <div class="barra">
     <nav>
-      <a href=""><div class="link">Dashboard</div></a>
+      <a href=""><div class="link">Home</div></a>
       <hr class = "featurette-divider">
       <a href=""><div class="link">Produtos</div></a>
       <hr class = "featurette-divider">
-      <a href=""><div class="link">Gestão</div></a>
-      <hr class = "featurette-divider">
+     
       <div class="container">
-      <p>Site desenvolvido por Felipe Schmitz & Vitoria santana !</p>
+      <p></i>Site desenvolvido por Felipe Schmitz & Vitoria santana !</i></p>
      </div>
     </nav>
   </div>
@@ -168,18 +169,20 @@ while($dados = mysqli_fetch_array($buscar)){
           </div>
           <br>
           <br>
-          <a href="gerarplanilia.php"><button class="btn btn-success">Gerar Planilha</button></a>
+          <a href="gerarplanilia.php"><button class="btn btn-outline-success">Gerar Planilha</button></a>
+        
+          <a href="produtos.php"><button class="btn btn-outline-success">Vender Produtos</button></a>
           <br>
           <br>
           <div class="row">
             <br>
             <br>
-          <table class="table table-striped table-dark">
+          <table class="table table-responsive table-striped table-dark">
             <thead>
                 <tr >
                     <th >ID</th>
                     <th >NOME</th>
-                    <th>PREÇO PRODUÇÃO</th>
+                    <th>PREÇO DE PRODUÇÃO</th>
                     <th >QUANTIDADE</th>
                     <th >TOTAL GASTO</th>
                     <th >PREÇO DE VENDA</th>
@@ -200,18 +203,23 @@ while($dados = mysqli_fetch_array($buscar)){
                     $QVV = $dados['quantida_Venda'];
                     $TVF = $dados['total_venda'];
                     $LF = $dados['Total_Final'];
-                    
+
+                    $precoprodu =number_format($PPP,2,",",".");
+                    $totalgas =number_format($TGG,2,",",".");
+                    $precovenda =number_format( $PVV,2,",",".");
+                    $totalven =number_format( $TVF,2,",",".");
+                    $totalfin =number_format(  $LF,2,",",".");
                 ?>
                 <tr>
                     <th scope="row"><?=$id?></th>
                     <td><?=$nome?></td>
-                    <td><?=$PPP?></td>
+                    <td>R$ <?=$precoprodu?></td>
                     <td><?=$QTT?></td>
-                    <td><?=$TGG?></td>
-                    <td><?=$PVV?></td>
+                    <td>R$ <?=$totalgas?></td>
+                    <td>R$ <?=$precovenda?></td>
                     <td><?=$QVV?></td>
-                    <td><?=$TVF?></td>
-                    <td><?=$LF?></td>
+                    <td>R$ <?=$totalven?></td>
+                    <td>R$ <?=$totalfin?></td>
                 </tr> 
                 <?php }?>
             </tbody>

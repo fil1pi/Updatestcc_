@@ -22,7 +22,7 @@ while ($umvalor != null) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title>Usuarios</title>
  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/stile.css">
@@ -33,15 +33,14 @@ while ($umvalor != null) {
   <div class="barra">
     <nav>
       
-      <a href="siteadm.php"><div class="link">Dashboard</div></a>
+      <a href="Homeadm.php"><div class="link">Home</div></a>
       <hr class = "featurette-divider">
       <a href="Listusuarios.php"><div class="link">usuarios</div></a>
       <hr class = "featurette-divider">
-      <a href="formpubli.php"><div class="link">Publicar</div></a>
-      <hr class = "featurette-divider">
+      
 
       <div class="container">
-      <p>Site desenvolvido por Felipe Schmitz & Vitoria santana !</p>
+      <p><i>Site desenvolvido por Felipe Schmitz & Vitoria santana !</i></p>
      </div>
       
     
@@ -53,12 +52,11 @@ while ($umvalor != null) {
   <label for="check" id="icone"><img src="../imagens/icone.png"></label>
   <div class="barra">
     <nav>
-      <a href=""><div class="link">Dashboard</div></a>
+      <a href=""><div class="link">Home</div></a>
       <hr class = "featurette-divider">
-      <a href=""><div class="link">Produtos</div></a>
+      <a href=""><div class="link">Usuarios</div></a>
       <hr class = "featurette-divider">
-      <a href=""><div class="link">publicar</div></a>
-      <hr class = "featurette-divider">
+    
     </nav>
   </div>
               <div class="nav">
@@ -111,7 +109,52 @@ while ($umvalor != null) {
               <div class="row">
                  
 
-                  <div class="col-md-7">
+
+          
+          <div class="col-md-7">
+          <br>
+          <br>
+          <br>
+              <div class="card">
+                  <div class="card-header">
+                      Novo Usuario
+                  </div>
+                      <div class="card-body">
+                      <form action="../Controllers/Novousuarioadm.php" method="post">
+                      <?php
+                            if (isset($_SESSION["Errorusu"]) ) {
+                              # code...
+                              $msgerro = $_SESSION["Errorusu"];
+                             echo "<div class='alert alert-danger' role='alert'> $msgerro </div>";
+                             unset($_SESSION["Errorusu"]);
+                            }
+                            
+                            ?>
+                <div class="form-group">
+                  <label for="nome">Nome</label>
+                  <input type="text" class="form-control" id="nome"name="nome">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text" class="form-control" id="email" name="email">
+                </div>
+                <div class="form-group">
+                  <label for="nota2">Senha</label>
+                  <input type="password" class="form-control" id="senha" name="senha">
+                </div>
+                <div class="form-group">
+                  <label for="nota2">Tipo</label>
+                  <input type="text" class="form-control" id="senha" name="adm">
+                </div>
+                <input type="hidden" name="id" value="id">
+                <button type="submit" class="btn btn-outline-primary">Salvar</button>
+              </form>
+                      </div>
+
+                  
+              </div>
+          </div>
+                            <div class="col-md-9">
                       <br>
                       <br>
 
@@ -145,7 +188,7 @@ foreach ($todososvalores as $registro):
                   <th>
                     <form action="../Controllers/Remover.php" method="post">
                       <input type="hidden" name="idv" value="<?=$registro["id"];?>">
-                      <button type="submit" class="btn btn-large btn-block btn-danger">Remover</button>
+                      <button type="submit" class="btn btn-large btn-block btn-outline-danger">Remover</button>
                     </form>
                   </th>
                 </tr>
@@ -154,41 +197,6 @@ foreach ($todososvalores as $registro):
             </table>
           </table>
           </div>
-          
-          <div class="col-md-7">
-          <br>
-          
-              <div class="card">
-                  <div class="card-header">
-                      Novo Usuario
-                  </div>
-                      <div class="card-body">
-                      <form action="../Controllers/Novousuario.php" method="post">
-                <div class="form-group">
-                  <label for="nome">Nome</label>
-                  <input type="text" class="form-control" id="nome"name="nome">
-                </div>
-                <div class="form-group">
-                  <label for="email">email</label>
-                  <input type="text" class="form-control" id="email" name="email">
-                </div>
-                <div class="form-group">
-                  <label for="nota2">senha</label>
-                  <input type="password" class="form-control" id="senha" name="senha">
-                </div>
-                <div class="form-group">
-                  <label for="nota2">Tipo</label>
-                  <input type="text" class="form-control" id="senha" name="adm">
-                </div>
-                
-                <button type="submit" class="ntn btn-primary">Salvar</button>
-              </form>
-                      </div>
-
-                  
-              </div>
-          </div>
-          
   
         
         

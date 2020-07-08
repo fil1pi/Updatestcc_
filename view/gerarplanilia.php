@@ -8,7 +8,7 @@ $usu=$_SESSION["nome"];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gerar execel</title>
+    <title>Gerar execel</title>
 </head>
 <body>
 	

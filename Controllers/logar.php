@@ -20,21 +20,29 @@ require_once("conexao-banco.php");
    
    $vetorUMRegistro = mysqli_fetch_assoc($resultadosql);
 
+ 
 
-if (isset($vetorUMRegistro)) {
+if (isset($vetorUMRegistro )) {
 
     session_start();
 $_SESSION["id"] = $vetorUMRegistro["id"];
 $_SESSION["email"] = $vetorUMRegistro["email"];
 $_SESSION["nome"] = $vetorUMRegistro["nome"];
+
    if ($vetorUMRegistro["adm"]===1) {
-    header("location: ../view/siteadm.php");
-   }else {
-    header("location: ../view/siteusu.php");
+
+    header("location: ../view/Homeadm.php");
+   } else {
+      
+    header("location: ../view/gestao.php");
    }
-} else {
-$_SESSION["erroLogin"] = "Erro de login ou senha.";
-header("location: login.php");
+} else  {
+   session_start();
+   $_SESSION["id"] != $vetorUMRegistro["id"];
+   $_SESSION["email"] != $vetorUMRegistro["email"];
+   $_SESSION["nome"] != $vetorUMRegistro["nome"];
+$_SESSION["ErroLogin"] = "Erro de login ou senha.";
+header("location: ../view/login.php");
 }
    
 ?>

@@ -9,6 +9,15 @@ require_once('cabecalho.php');
 <h3 class="font-italic">A nossa plataforma de gerenciamento!</h3>
 <br>
                         <p class="font-italic"> Cadastrar novo usuario</p>
+                        <?php
+                            if (isset($_SESSION["ErrorCadas"]) ) {
+                              # code...
+                              $msgerro = $_SESSION["ErrorCadas"];
+                             echo "<div class='alert alert-danger' role='alert'> $msgerro </div>";
+                             unset($_SESSION["ErrorCadas"]);
+                            }
+                            
+                            ?>
 
 <form action = "../Controllers/Cadastrar.php" method = "post" enctype                  = "multipart/form-data">
         <div   class  = "form-group">
@@ -29,7 +38,7 @@ require_once('cabecalho.php');
             </div>
            
 
-
+            <input type="hidden" name="id" value="id">
             <button type = "submit" class = "btn btn-outline-primary btn-lg btn-block">cadastrar</button>
         </form>
 

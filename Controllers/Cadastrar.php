@@ -2,29 +2,46 @@
 require_once("../view/cabecalho.php");
 require_once("conexao-banco.php");
 
-
-$nome  = $_POST["nome"];
-$senha = $_POST["senha"];
-$email = $_POST["email"];
-$adm   = $_POST["adm"];
+if ((isset($_POST["id"])) && (isset($_POST["id"])=='id') ) {
+    
+   
 
 
+    # code...
+
+$nome  = trim($_POST["nome"]);
+$senha = trim($_POST["senha"]);
+
+$email = trim($_POST["email"]);
+
+if (empty($nome)) {
+    $_SESSION["ErrorCadas"] = "Todos os campos devem ser preenchidos ";
+    header("location: ../view/Cadastro.php");
+    # code...
+}else if ((empty($senha)) && empty($email)) {
+
+     $_SESSION["ErrorCadas"] = "Todos os campos devem ser preenchidos ";
+    header("location: ../view/Cadastro.php");
+}else{
 
 
 
 
-$sql     = "insert into usuarios( email,senha,nome,adm) values(?,?,?,?)";
+
+
+
+
+
+
+$sql     = "insert into usuarios( email,senha,nome) values(?,?,?)";
 $sqlprep = $conexao->prepare($sql);
-$sqlprep->bind_param("sssi" ,$email,$senha,$nome,$adm);
+$sqlprep->bind_param("sss" ,$email,$senha,$nome);
 if ($sqlprep->execute()) {
     header("location: ../view/login.php");
 } else {
-    ?>
-
-    <div class = "p-3 mb-2 bg-success text-white">Algo de errado amigão</div>
-
-    <?php
-
+    header("location: ../view/404.php");
+}
+}
 }
 
 ?>

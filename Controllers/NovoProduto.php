@@ -2,12 +2,27 @@
 require_once("../view/cabecalho.php");
 require_once("conexao-banco.php");
 
+if ((isset($_POST["id"])) && (isset($_POST["id"])=='id') ) {
+    
+   
 
-$nome  = $_POST["nome"];
-$preco = $_POST["preco"];
-$qtde = $_POST["qtde"];
+
+    # code...
+
+$nome  = trim($_POST["nome"]);
+$preco = trim($_POST["preco"]);
+
+$qtde = trim($_POST["qtde"]);
 $produtor = $_SESSION['nome'];
+if (empty($nome)) {
+    $_SESSION["ErrorCampo"] = "Todos os campos devem ser preenchidos ";
+    header("location: ../view/produtos.php");
+    # code...
+}else if ((empty($preco)) && empty($qtde)) {
 
+     $_SESSION["ErrorCampo"] = "Todos os campos devem ser preenchidos ";
+    header("location: ../view/produtos.php");
+}else{
 
 
 
@@ -19,14 +34,10 @@ $sqlprep->bind_param("sdids" ,$nome,$preco,$qtde,$total,$produtor);
 if ($sqlprep->execute()) {
     header("location: ../view/produtos.php");
 } else {
-    ?>
-    
+    header("location: ../view/404.php");
 
-    <div class = "p-3 mb-2 bg-success text-white">Algo de errado amigão</div>
-
-
-    <?php
 
 }
-
+}
+}
 ?>
