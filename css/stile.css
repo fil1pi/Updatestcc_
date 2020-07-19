@@ -5,6 +5,7 @@
     
 }
 body{
+    
     background-color: #0f0f0f;
     
 }
@@ -21,7 +22,7 @@ body{
     position: fixed;
     background-color:#282828;
     height: 100%;
-    width: 300px;
+    width: 200px;
     transition: all .2s linear;
     left: -300px;
     z-index: 1;
@@ -58,6 +59,7 @@ transform: translateX(300px);
     padding-left: 900px;
 }
 container{
+    
     z-index: 2;
     
    

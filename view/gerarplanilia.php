@@ -1,6 +1,7 @@
 <?php
 require_once("../Controllers/conexao-banco.php");
 require_once('cabecalho.php');
+require_once('../Controllers/protege.php');
 $usu=$_SESSION["nome"];
 ?>
 <!DOCTYPE html>
@@ -11,14 +12,17 @@ $usu=$_SESSION["nome"];
     <title>Gerar execel</title>
 </head>
 <body>
-	
+
+
 
     <?php
+	
+
     $arquivo = 'produtos.xls';
     $html = '';
 		$html .= '<table border="1">';
 		$html .= '<tr>';
-		$html .= '<td colspan="8"><b>Planilha de Produtos</b></tr>';
+		$html .= '<td colspan="9"><b>Planilha de Produtos</b></tr>';
         $html .= '</tr>';
         $html .= '<tr>';
 		$html .= '<td><b>ID</b></td>';
@@ -36,16 +40,26 @@ $usu=$_SESSION["nome"];
 		$resultado_msg_contatos = mysqli_query($conexao, $result_msg_contatos);
 		
 		while($row_msg_contatos = mysqli_fetch_assoc($resultado_msg_contatos)){
+			$p =$row_msg_contatos["Preco_producao"];
+			$tg=$row_msg_contatos["Total_gasto"];
+			$pv=$row_msg_contatos["Preco_venda"];
+			$tv=$row_msg_contatos["total_venda"];
+			$tf=$row_msg_contatos["Total_Final"];
+			$precoprodu =number_format($p,2,",",".");
+			$totalgas =number_format($tg,2,",",".");
+                    $precovenda =number_format( $pv,2,",",".");
+                    $totalven =number_format( $tv,2,",",".");
+                    $totalfin =number_format(  $tf,2,",",".");
 			$html .= '<tr>';
 			$html .= '<td>'.$row_msg_contatos["idproduto"].'</td>';
 			$html .= '<td>'.$row_msg_contatos["nome"].'</td>';
-			$html .= '<td>'.$row_msg_contatos["Preco_producao"].'</td>';
+			$html .= '<td> R$'.$precoprodu.'</td>';
 			$html .= '<td>'.$row_msg_contatos["quantidade"].'</td>';
-			$html .= '<td>'.$row_msg_contatos["Total_gasto"].'</td>';
-			$html .= '<td>'.$row_msg_contatos["Preco_venda"].'</td>';
+			$html .= '<td> R$'.$totalgas.'</td>';
+			$html .= '<td> R$'.$precovenda.'</td>';
 			$html .= '<td>'.$row_msg_contatos["quantida_Venda"].'</td>';
-			$html .= '<td>'.$row_msg_contatos["total_venda"].'</td>';
-			$html .= '<td>'.$row_msg_contatos["Total_Final"].'</td>';
+			$html .= '<td> R$'.$totalven.'</td>';
+			$html .= '<td> R$'.$totalfin.'</td>';
 			
 			$html .= '</tr>';
 			;

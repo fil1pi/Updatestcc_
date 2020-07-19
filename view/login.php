@@ -4,7 +4,7 @@ require_once('cabecalho.php');
 ?>
 <link rel="stylesheet" href="../css/css.css">
 <div class = "card" id="telalogin">
-<div class = "card-body">
+<div class = "card-body text-center">
 
   <h1 class="font-italic">Siscul</h1>
 <h3 class="font-italic">A nossa plataforma de gerenciamento!</h3>
@@ -19,6 +19,8 @@ require_once('cabecalho.php');
                         <p class="font-italic"> Login</p>
                        <p class="text-center text-danger">
                             <?php
+                            #filipi
+
                             if (isset($_SESSION["ErroLogin"]) ) {
                               # code...
                               $msgerro = $_SESSION["ErroLogin"];
@@ -27,7 +29,17 @@ require_once('cabecalho.php');
                             }
                             
                             ?>
+<?php
+                            #filipi
 
+                            if (isset($_SESSION["ErrorLogin"]) ) {
+                              # code...
+                              $msgerro = $_SESSION["ErrorLogin"];
+                             echo "<div class='alert alert-danger' role='alert'> $msgerro </div>";
+                             unset($_SESSION["ErrorLogin"]);
+                            }
+                            
+                            ?>
                        </p>
                         <label for  = "email"></label>
                         <input type = "text" class = " rounded-pill form-control" id = "email"name = "email" placeholder = "Email">

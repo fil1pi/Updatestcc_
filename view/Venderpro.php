@@ -125,7 +125,18 @@ foreach ($todososvalores as $registro):
             </div>
             <div class="card-body">
               <form action="../Controllers/NovovenderProduto.php" method="post">
-             
+            
+                            <?php
+                            if (isset($_SESSION["Errorvali"]) ) {
+                              # code...
+                              $msgerro = $_SESSION["Errorvali"];
+                             echo "<div class='alert alert-danger' role='alert'> $msgerro </div>";
+                             unset($_SESSION["Errorvali"]);
+                            }
+                            
+                            
+                            ?>
+                   
                 <div class="form-group">
                   <label for="nome">Nome</label>
                   <input type="text" class="form-control" id="nome"name="nome"
@@ -134,8 +145,13 @@ foreach ($todososvalores as $registro):
                 
                 <div class="form-group">
                   <label for="nota2">Preço de produção</label>
+                  <div class="input-group">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">R$</span>
+                  </div>
                   <input type="text" class="form-control" id="senha" name="preco"
                   value="<?=$registro['Preco_producao']?>">
+                  </div>
                 </div>
                 <div class="form-group">
                   <label for="nota2">Quantidade </label>
@@ -144,18 +160,28 @@ foreach ($todososvalores as $registro):
                 </div>
                 <div class="form-group">
                   <label for="nota2">Total gasto</label>
+                  <div class="input-group">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">R$</span>
+                  </div>
                   <input type="text" class="form-control" id="senha" name="tg"
                   value="<?=$registro['Total_gasto']?>">
+                  </div>
                 </div>
                 <div class="form-group">
                   <label for="nota2">Preço venda</label>
+                  <div class="input-group">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">R$</span>
+                  </div>
                   <input type="text" class="form-control" id="senha" name="pv">
+  </div>
                 </div>
                 <div class="form-group">
                   <label for="nota2">quantidade venda</label>
                   <input type="number" class="form-control" id="senha" name="qtdev">
                 </div>
-                <input type="hidden" name="id" value="id">
+                <input type="hidden" name="id" value="<?=$id?>">
                 <button type="submit" class="btn btn-outline-success">Guardar</button>
               </form>
             </div>

@@ -22,6 +22,7 @@ $proximo = $pag +1;
 
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -41,7 +42,7 @@ $proximo = $pag +1;
       
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['nome', 'produto', 'Vendidos', 'Produzidos'],
+          [' ', 'produto', 'Vendidos', 'Produzidos'],
           <?php
 $sql =" SELECT * from Produtos_omega  ORDER BY quantida_Venda asc";
 $buscar =mysqli_query($conexao,$sql);
@@ -160,7 +161,7 @@ while($dados = mysqli_fetch_array($buscar)){
            <br>
           <br>
           
-          <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+          <div id="barchart_material" style="width: 1110px; height: 500px;"></div>
           
           </div>
           </div>
@@ -170,49 +171,54 @@ while($dados = mysqli_fetch_array($buscar)){
           <div class="row">
             <br>
             <br>
-          <table class="table table-responsive  table-striped table-dark">
+          <table class="table text-center table-bordered  table-striped table-dark">
+          <thead>
+                <th colspan="7" class="text-center">Monitoramento de Usuarios </th>
+              </thead>
             <thead>
                 <tr >
-                    <th >ID</th>
-                    <th >PRODUTOR</th>
-                    <th >NOME</th>
-                    <th>PREÇO DE PRODUÇÃO</th>
-                    <th >QUANTIDADE</th>
-                    <th >TOTAL GASTO</th>
-                    <th >PREÇO DE VENDA</th>
-                    <th >QUANTIDADE VENDIDA</th>
-                    <th >TOTAL DA VENDA</th>
-                    <th >LUCRO FINAL</th>
+                <th scope="col"> ID </th>
+                <th scope="col"> Produtor </th>
+                   
+                    
+                    
+                    <th scope="col"> Quantidade de produtos </th>
+                    <th scope="col" > Total Gasto  </th>
+                   
+                    <th scope="col">Vendidos</th>
+                    <th scope="col"> Total Da Venda </th>
+                    <th scope="col"> Lucro Final </th>
                 </tr>
             </thead>
             <tbody>
                 <?php
+                
                 while($dados = mysqli_fetch_array($limite)){
                     $id = $dados['idproduto'];
-                    $nome = $dados['nome'];
-                    $PPP = $dados['Preco_producao'];
+                   
+                    
                     $QTT = $dados['quantidade'];
                     $TGG = $dados['Total_gasto'];
-                    $PVV = $dados['Preco_venda'];
+                  
                     $QVV = $dados['quantida_Venda'];
                     $TVF = $dados['total_venda'];
                     $LF = $dados['Total_Final'];
                     $p = $dados['produtor'];
 
-                    $precoprodu =number_format($PPP,2,",",".");
+                   
                     $totalgas =number_format($TGG,2,",",".");
-                    $precovenda =number_format( $PVV,2,",",".");
+                   
                     $totalven =number_format( $TVF,2,",",".");
                     $totalfin =number_format(  $LF,2,",",".");
                 ?>
                 <tr>
                     <th scope="row"><?=$id?></th>
                     <td><?=$p?></td>
-                    <td><?=$nome?></td>
-                    <td>R$ <?=$precoprodu?></td>
+                    
+                    
                     <td><?=$QTT?></td>
                     <td>R$ <?=$totalgas?></td>
-                    <td>R$ <?=$precovenda?></td>
+                   
                     <td><?=$QVV?></td>
                     <td>R$ <?=$totalven?></td>
                     <td>R$ <?=$totalfin?></td>

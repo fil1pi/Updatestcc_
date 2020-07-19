@@ -1,7 +1,7 @@
 <?php
 require_once("../Controllers/conexao-banco.php");
 require_once('cabecalho.php');
-
+require_once('../Controllers/protege.php');
 
 $sql = " SELECT * FROM  usuarios ";
 $resultado = mysqli_query($conexao, $sql);
@@ -13,6 +13,7 @@ while ($umvalor != null) {
 
    
 }
+
 
 
 ?>
@@ -117,7 +118,7 @@ while ($umvalor != null) {
           <br>
               <div class="card">
                   <div class="card-header">
-                      Novo Usuario
+                      Cadastrar Novo Usuario
                   </div>
                       <div class="card-body">
                       <form action="../Controllers/Novousuarioadm.php" method="post">
@@ -159,10 +160,14 @@ while ($umvalor != null) {
                       <br>
 
                 
-          <table class="table table-bordered table-dark ">
-            <table class="table table-bordered table-dark">
-              <thead class="">
+          <table class="table table-bordered table-dark text-center ">
+            <table class="table table-bordered table-dark text-center">
+              <thead>
+                <th colspan="6" class="text-center">Listagen de Usuarios </th>
+              </thead>
+              <thead class="text-center">
                 <tr>
+                
                   <th>Nome</th>
                   <th>email</th>
                   <th>condição</th>

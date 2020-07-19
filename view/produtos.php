@@ -14,6 +14,7 @@ while ($umvalor != null) {
 	$umvalor = mysqli_fetch_assoc($resultado);
 }
 
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -125,14 +126,50 @@ while ($umvalor != null) {
                             }
                             
                             ?>
+                            <?php
+                            if (isset($_SESSION["Errorqt"]) ) {
+                              # code...
+                              $msgerro = $_SESSION["Errorqt"];
+                             echo "<div class='alert alert-danger' role='alert'> $msgerro </div>";
+                             unset($_SESSION["Errorqt"]);
+                            }
+                            
+                            
+                            ?>
+                             <?php
+                            if (isset($_SESSION["Errorvali"]) ) {
+                              # code...
+                              $msgerro = $_SESSION["Errorvali"];
+                             echo "<div class='alert alert-danger' role='alert'> $msgerro </div>";
+                             unset($_SESSION["Errorvali"]);
+                            }
+                            
+                            
+                            ?>
+                              <?php
+                            if (isset($_SESSION["Errorv"]) ) {
+                              # code...
+                              $msgerro = $_SESSION["Errorv"];
+                             echo "<div class='alert alert-danger' role='alert'> $msgerro </div>";
+                             unset($_SESSION["Errorv"]);
+                            }
+                            
+                            ?>
+                             
                 <div class="form-group">
                   <label for="nome">Nome</label>
                   <input type="text" class="form-control" id="nome"name="nome">
                 </div>
                 
                 <div class="form-group">
-                  <label for="nota2">Preço</label>
+                  <label for="nota2">Preço De Produção</label>
+                  <div class="input-group">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text">R$</span>
+                  </div>
+                  
                   <input type="text" class="form-control" id="senha" name="preco">
+                  </div>
                 </div>
                 <div class="form-group">
                   <label for="nota2">Quantidade</label>
@@ -150,8 +187,11 @@ while ($umvalor != null) {
             <br>
             <br>
             <div class="col-md-9">
-          <table class="table   table-bordered table-dark">
-            <table class="table  table-bordered table-dark">
+          <table class="table  text-center table-bordered table-striped table-dark">
+            <table class="table   text-center table-bordered table-striped table-dark">
+            <thead>
+                <th colspan="9" class="text-center">Tabela de Produtos</th>
+              </thead>
               <thead class="">
                 <tr>
                   <th>Nome</th>
@@ -159,10 +199,11 @@ while ($umvalor != null) {
                   <th>Preço de Produção</th>
                   <th>Quantidade</th>
                   <th>Total gasto</th>
-                  <th >Condição</th>
+                  <th colspan="2">Condição</th>
                   
                   <?php
 foreach ($todososvalores as $registro):
+
   $preco =number_format($registro["Preco_producao"],2,",",".");
   $toga =number_format($registro["Total_gasto"],2,",",".");
 ?>
@@ -180,7 +221,8 @@ foreach ($todososvalores as $registro):
                       <input type="hidden" name="id" value="<?=$registro["id"];?>">
                       <button type="submit" class="btn  btn-large btn-block btn-outline-danger">Remover</button>
                     </form>
-                    <br>
+</th >
+                    <th >
                     <form action="Venderpro.php" method="post">
                       <input type="hidden" name="id" value="<?=$registro["id"];?>">
                       <button type="submit" class="btn btn-outline btn-large btn-block btn-outline-warning">Vender</button>
@@ -189,7 +231,8 @@ foreach ($todososvalores as $registro):
                   </th>
                 </tr>
               </tbody>
-              <?php endforeach?>
+              <?php  
+endforeach?>
             
           </table>
         

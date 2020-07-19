@@ -4,6 +4,7 @@ require_once('cabecalho.php');
 require_once('../Controllers/protege.php');
 $usu= $_SESSION['nome'];
 
+
 $pag = (isset($_GET['pagina']))?$_GET['pagina'] : 1;
     
 $busca = "SELECT *FROM Produtos_omega where produtor = '$usu'";
@@ -41,9 +42,9 @@ $proximo = $pag +1;
       
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['nome', 'Lucro', 'Total gasto', 'Total venda'],
+          [' ', 'Lucro', 'Total gasto', 'Total venda'],
           <?php
-$sql =" SELECT * from Produtos_omega where produtor = '$usu' ORDER BY Total_Final asc";
+$sql =" SELECT * from Produtos_omega where produtor = '$usu' ORDER BY Total_Final asc limit 10";
 $buscar =mysqli_query($conexao,$sql);
 while($dados = mysqli_fetch_array($buscar)){
 
@@ -155,44 +156,105 @@ while($dados = mysqli_fetch_array($buscar)){
               
             </div>
           </nav>
+          <?php
+         $sql =" SELECT sum(Total_gasto) as Total from Produtos_omega where produtor = '$usu' ";
+         $buscar1 =mysqli_query($conexao,$sql);
+         while($dados1 = mysqli_fetch_array($buscar1)){
+           $som= $dados1["Total"];
+           $somtg =number_format($som,2,",",".");
+         }
+         $sql =" SELECT sum(total_venda) as Total2 from Produtos_omega where produtor = '$usu' ";
+         $buscar2 =mysqli_query($conexao,$sql);
+         while($dados2 = mysqli_fetch_array($buscar2)){
+           $som2= $dados2["Total2"];
+           $somtv =number_format($som2,2,",",".");
+         }
+         $sql =" SELECT sum(Total_Final) as Total3 from Produtos_omega where produtor = '$usu' ";
+         $buscar3 =mysqli_query($conexao,$sql);
+         while($dados3 = mysqli_fetch_array($buscar3)){
+           $som3= $dados3["Total3"];
+           $somtf =number_format($som3,2,",",".");
+         }
+         ?>
           <div class="container">
+            
+            <br>
+            <br>
+<br>
+         <div class="row">
+          
+            <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+  
+  <div class="card-body">
+    <h4 class="card-title"> Total de Gastos</h4>
+    <h4 class="card-text">R$ <?=$somtg ?></h4>
+  </div>
+</div>
+            
+            </div>
+            
+            <div class="col-md-4">
+            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+  
+  <div class="card-body">
+    <h4 class="card-title">Total Vendas</h4>
+    <h4 class="card-text"> R$ <?=$somtv ?></h4>
+  </div>
+</div>
+            </div>
+            
+            <div class="col-md-4">
+            <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+ 
+  <div class="card-body">
+    <h4 class="card-title">Lucro</h4>
+    <h4 class="card-text">R$ <?=$somtf ?></h4>
+  </div>
+</div>
+            </div>
+            </div> 
           <div class="row">
-              <div class="col-md-6">
-         <br>
-         
-           <br>
+              <div class="col-md-10">
+        
           <br>
           
-          <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+          <div id = "barchart_material" style = "width: 1110px; height: 500px; "></div>
           
           </div>
           </div>
+          
           <br>
           <br>
           <a href="gerarplanilia.php"><button class="btn btn-outline-success">Gerar Planilha</button></a>
-        
+         
+
           <a href="produtos.php"><button class="btn btn-outline-success">Vender Produtos</button></a>
           <br>
           <br>
-          <div class="row">
-            <br>
-            <br>
-          <table class="table table-responsive table-striped table-dark">
+          
+            
+          <table class="table text-center table-bordered  table-striped table-dark" >
+          <thead>
+                <th colspan="9" class="text-center">Tabela de Vendas </th>
+              </thead>
             <thead>
                 <tr >
-                    <th >ID</th>
-                    <th >NOME</th>
-                    <th>PREÇO DE PRODUÇÃO</th>
-                    <th >QUANTIDADE</th>
-                    <th >TOTAL GASTO</th>
-                    <th >PREÇO DE VENDA</th>
-                    <th >QUANTIDADE VENDIDA</th>
-                    <th >TOTAL DA VENDA</th>
-                    <th >LUCRO FINAL</th>
+                    <th scope="col"> ID </th>
+                    <th scope="col"> Nome </th>
+                    <th scope="col"> Preço De Produção</th>
+                    
+                    <th scope="col"> Quantidade </th>
+                    <th scope="col" > Total Gasto  </th>
+                    <th scope="col"> Preço De Venda </th>
+                    <th scope="col">Vendidos</th>
+                    <th scope="col"> Total Da Venda </th>
+                    <th scope="col"> Lucro Final </th>
                 </tr>
             </thead>
             <tbody>
                 <?php
+                
                 while($dados = mysqli_fetch_array($limite)){
                     $id = $dados['idproduto'];
                     $nome = $dados['nome'];
@@ -210,17 +272,19 @@ while($dados = mysqli_fetch_array($buscar)){
                     $totalven =number_format( $TVF,2,",",".");
                     $totalfin =number_format(  $LF,2,",",".");
                 ?>
+                
                 <tr>
-                    <th scope="row"><?=$id?></th>
-                    <td><?=$nome?></td>
-                    <td>R$ <?=$precoprodu?></td>
-                    <td><?=$QTT?></td>
-                    <td>R$ <?=$totalgas?></td>
-                    <td>R$ <?=$precovenda?></td>
-                    <td><?=$QVV?></td>
-                    <td>R$ <?=$totalven?></td>
-                    <td>R$ <?=$totalfin?></td>
+                    <th scope="row"><?php echo $id ?></th>
+                    <td scope="row"><?php echo$nome?></td>
+                    <td scope="row"> R$ <?php echo $precoprodu ?> </td>
+                    <td scope="row"><?php echo$QTT?></td>
+                    <td scope="row"> R$ <?php echo $totalgas?> </td>
+                    <td scope="row"> R$ <?php echo$precovenda?> </td>
+                    <td scope="row"><?php echo$QVV?></td>
+                    <td scope="row"> R$ <?php echo$totalven?> </td>
+                    <td scope="row">  R$ <?php echo$totalfin?> </td>
                 </tr> 
+               
                 <?php }?>
             </tbody>
         </table>
@@ -262,7 +326,7 @@ while($dados = mysqli_fetch_array($buscar)){
         
     
 
-          </div>
+         </div> 
           </div>
           
 </body>

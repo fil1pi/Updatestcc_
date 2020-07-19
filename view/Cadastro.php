@@ -1,9 +1,10 @@
 <?php
 require_once('cabecalho.php');
+require_once('../Controllers/protege.php');
 ?>
 <link rel="stylesheet" href="../css/css.css">
 <div class = "card" id="telalogin">
-<div class = "card-body">
+<div class = "card-body text-center">
 
   <h1 class="font-italic">Siscul</h1>
 <h3 class="font-italic">A nossa plataforma de gerenciamento!</h3>
@@ -41,6 +42,7 @@ require_once('cabecalho.php');
             <input type="hidden" name="id" value="id">
             <button type = "submit" class = "btn btn-outline-primary btn-lg btn-block">cadastrar</button>
         </form>
+        
 
   </div>
 </div>
