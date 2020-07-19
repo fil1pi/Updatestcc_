@@ -12,7 +12,7 @@ if ((isset($_POST["id"])) && (isset($_POST["id"])=='id') ) {
 
 $nome  = trim($_POST["nome"]);
 $senha = trim($_POST["senha"]);
-$md5 = md5($senha);
+$md5   = md5($senha);
 $email = trim($_POST["email"]);
 
 if (empty($nome)) {

@@ -7,15 +7,15 @@ require_once("../view/cabecalho.php");
 
 
 
-   $email =  $_POST["email"];
+   $email = $_POST["email"];
    $senha = $_POST["senha"];
-   $md5 = md5($senha);
+   $md5   = md5($senha);
 
     # code...
 
       
-   $sql = "select * from usuarios where email=? and senha=?";
-   $sqlprep=$conexao->prepare($sql);
+   $sql     = "select * from usuarios where email=? and senha=?";
+   $sqlprep = $conexao->prepare($sql);
    $sqlprep->bind_param("ss",$email,$md5);
    $sqlprep->execute();
    $resultadosql = $sqlprep->get_result();
@@ -27,9 +27,9 @@ require_once("../view/cabecalho.php");
 if (isset($vetorUMRegistro )) {
 
     
-$_SESSION["id"] = $vetorUMRegistro["id"];
+$_SESSION["id"]    = $vetorUMRegistro["id"];
 $_SESSION["email"] = $vetorUMRegistro["email"];
-$_SESSION["nome"] = $vetorUMRegistro["nome"];
+$_SESSION["nome"]  = $vetorUMRegistro["nome"];
 
    if ($vetorUMRegistro["adm"]===1) {
 
@@ -42,10 +42,10 @@ $_SESSION["nome"] = $vetorUMRegistro["nome"];
 
 } else  {
 
-   $_SESSION["id"] != $vetorUMRegistro["id"];
-   $_SESSION["email"] != $vetorUMRegistro["email"];
-   $_SESSION["nome"] != $vetorUMRegistro["nome"];
-$_SESSION["ErroLogin"] = "Erro de login ou senha.";
+   $_SESSION["id"]       != $vetorUMRegistro["id"];
+   $_SESSION["email"]    != $vetorUMRegistro["email"];
+   $_SESSION["nome"]     != $vetorUMRegistro["nome"];
+   $_SESSION["ErroLogin"] = "Erro de login ou senha.";
 header("location: ../view/login.php");
 }
 

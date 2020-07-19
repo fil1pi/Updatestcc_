@@ -2,14 +2,14 @@
 require_once('cabecalho.php');
 require_once('../Controllers/protege.php');
 ?>
-<link rel="stylesheet" href="../css/css.css">
-<div class = "card" id="telalogin">
-<div class = "card-body text-center">
+<link rel   = "stylesheet" href = "../css/css.css">
+<div  class = "card" id         = "telalogin">
+<div  class = "card-body text-center">
 
-  <h1 class="font-italic">Siscul</h1>
-<h3 class="font-italic">A nossa plataforma de gerenciamento!</h3>
+  <h1 class = "font-italic">Siscul</h1>
+  <h3 class = "font-italic">A nossa plataforma de gerenciamento!</h3>
 <br>
-                        <p class="font-italic"> Cadastrar novo usuario</p>
+                        <p class = "font-italic"> Cadastrar novo usuario</p>
                         <?php
                             if (isset($_SESSION["ErrorCadas"]) ) {
                               # code...
@@ -20,10 +20,10 @@ require_once('../Controllers/protege.php');
                             
                             ?>
 
-<form action = "../Controllers/Cadastrar.php" method = "post" enctype                  = "multipart/form-data">
-        <div   class  = "form-group">
-        <label for    = "nome"> </label>
-        <input type   = "text" class           = " rounded-pill form-control" id = "nome"name = "nome" placeholder = "nome de usuario">
+<form  action = "../Controllers/Cadastrar.php" method = "post" enctype                  = "multipart/form-data">
+<div   class  = "form-group">
+<label for    = "nome"> </label>
+<input type   = "text" class                          = " rounded-pill form-control" id = "nome"name = "nome" placeholder = "nome de usuario">
 
         
             </div>
@@ -39,14 +39,14 @@ require_once('../Controllers/protege.php');
             </div>
            
 
-            <input type="hidden" name="id" value="id">
+            <input  type = "hidden" name  = "id" value = "id">
             <button type = "submit" class = "btn btn-outline-primary btn-lg btn-block">cadastrar</button>
         </form>
         
 
   </div>
 </div>
-<div id="aleatorio"></div>
+<div id = "aleatorio"></div>
 <?php
 require_once('footer.php');
 ?>

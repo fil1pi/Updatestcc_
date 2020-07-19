@@ -13,7 +13,7 @@ if ((isset($_POST["id"])) && (isset($_POST["id"])=='id') ) {
 $nome  = trim($_POST["nome"]);
 $preco = trim($_POST["preco"]);
 
-$qtde = trim($_POST["qtde"]);
+$qtde     = trim($_POST["qtde"]);
 $produtor = $_SESSION['nome'];
 
     
@@ -36,7 +36,7 @@ if (empty($nome)) {
 
 $sql     = "insert into produtos_alpha( nome,Preco_producao,quantidade,total_gasto,produtor) values(?,?,?,?,?)";
 $sqlprep = $conexao->prepare($sql);
-$total =$qtde*$preco;
+$total   = $qtde*$preco;
 $sqlprep->bind_param("sdids" ,$nome,$preco,$qtde,$total,$produtor);
 if ($sqlprep->execute()) {
     header("location: ../view/produtos.php");

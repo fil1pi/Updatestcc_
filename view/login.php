@@ -2,12 +2,12 @@
 require_once('cabecalho.php');
 
 ?>
-<link rel="stylesheet" href="../css/css.css">
-<div class = "card" id="telalogin">
-<div class = "card-body text-center">
+<link rel   = "stylesheet" href = "../css/css.css">
+<div  class = "card" id         = "telalogin">
+<div  class = "card-body text-center">
 
-  <h1 class="font-italic">Siscul</h1>
-<h3 class="font-italic">A nossa plataforma de gerenciamento!</h3>
+  <h1 class = "font-italic">Siscul</h1>
+  <h3 class = "font-italic">A nossa plataforma de gerenciamento!</h3>
 
 
                 <form action = "../Controllers/Logar.php" method = "post">
@@ -16,8 +16,8 @@ require_once('cabecalho.php');
                 <div class = "form-group">
  <br>
  
-                        <p class="font-italic"> Login</p>
-                       <p class="text-center text-danger">
+                        <p class = "font-italic"> Login</p>
+                        <p class = "text-center text-danger">
                             <?php
                             #filipi
 
@@ -59,7 +59,7 @@ require_once('cabecalho.php');
 
   </div>
 </div>
-<div id="aleatorio"></div>
+<div id = "aleatorio"></div>
 <?php
 require_once('footer.php');
 ?>
