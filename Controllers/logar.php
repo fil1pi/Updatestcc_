@@ -26,7 +26,7 @@ require_once("../view/cabecalho.php");
 
 if (isset($vetorUMRegistro )) {
 
-    
+   session_start();
 $_SESSION["id"]    = $vetorUMRegistro["id"];
 $_SESSION["email"] = $vetorUMRegistro["email"];
 $_SESSION["nome"]  = $vetorUMRegistro["nome"];
@@ -41,7 +41,7 @@ $_SESSION["nome"]  = $vetorUMRegistro["nome"];
    #filipi
 
 } else  {
-
+   session_start();
    $_SESSION["id"]       != $vetorUMRegistro["id"];
    $_SESSION["email"]    != $vetorUMRegistro["email"];
    $_SESSION["nome"]     != $vetorUMRegistro["nome"];
